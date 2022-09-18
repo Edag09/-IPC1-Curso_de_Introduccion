@@ -1,6 +1,7 @@
 package ejemplos;
 
 public class Funcion {
+
     double resultado (int a, int b, int c, int d){
     double resultado = 0.0;
     int suma, multiplicacion;

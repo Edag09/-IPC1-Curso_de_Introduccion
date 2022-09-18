@@ -1,9 +1,10 @@
 package ejemplos;
 import java.util.Scanner;
+import DragDrop.Ventana_a_manita;
 public class Ejemplos {
 
     public static void main(String[] args) {
-    int a, b, c, d, suma, multiplicacion;
+    /*int a, b, c, d, suma, multiplicacion;
     float resultado;
     double res;
     boolean bandera = true;
@@ -18,8 +19,8 @@ public class Ejemplos {
            c = sn.nextInt();
            System.out.println("Ingresa el valor de la cuarta variable: ");
            d = sn.nextInt();
-           funcion.resultado(a, b, c, d);
-           /*suma = a + b;
+           //funcion.resultado(a, b, c, d);
+           suma = a + b;
            multiplicacion = c * d;
             if (c == 0 || d == 0) {
                 System.out.println("No se puede realizar una division dentro de 0, por favor ingresa nuevamente los numeros correctos");
@@ -28,9 +29,10 @@ public class Ejemplos {
                 res = (double) suma / multiplicacion ;
                 System.out.println("El resultado es de " + resultado);
                 System.out.println("El resultado es de " + res);
-            }*/
+            }
 
-        }while (c == 0 || d==0);
-
+        }while (c == 0 || d==0);*/
+        Ventana_a_manita ventana = new Ventana_a_manita();
+        ventana.setVisible(true);
     }
 }
