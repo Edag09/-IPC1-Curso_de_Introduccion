@@ -5,23 +5,17 @@ public class Animal {
     private String name;
     private int edad;
     private String raza;
+    private String nombreCientifico;
 
-    public Animal(String name, int edad, String raza) {
+    public Animal(String name, int edad, String raza, String NC) {
         this.name = name;
         this.edad = edad;
         this.raza = raza;
+        this.nombreCientifico = NC;
     }
 
     public Animal(){
     
-    }
-
-    void ladrar(){
-        System.out.println("The dog say guau");
-    }
-
-    void miagar(){
-        System.out.println("The cat say miau");
     }
 
     public String getName() {
@@ -48,6 +42,12 @@ public class Animal {
         this.raza = raza;
     }
 
+    public String getNombreCientifico() {
+        return nombreCientifico;
+    }
 
+    public void setNombreCientifico(String nombreCientifico) {
+        this.nombreCientifico = nombreCientifico;
+    }
 
 }
