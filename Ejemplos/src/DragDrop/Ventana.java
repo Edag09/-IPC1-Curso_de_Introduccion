@@ -75,7 +75,7 @@ public class Ventana extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(230, 230, 230)
-                        .addComponent(Contrasenia, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                        .addComponent(Contrasenia, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(170, 170, 170)
@@ -105,7 +105,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Contrasenia))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         pack();
