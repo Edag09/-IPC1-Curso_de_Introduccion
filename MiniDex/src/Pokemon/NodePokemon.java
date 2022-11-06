@@ -1,7 +1,6 @@
 package Pokemon;
 
 public class NodePokemon {
-    //001,Bulbasaur,Planta-Veneno,Kanto,45,49,49,45,65,65,Poco-Comun,imagen
     private int correlativo;
     private String nombre_pk;
     private String tipo_pk;
@@ -16,6 +15,7 @@ public class NodePokemon {
     private String direccion_imagen;
     private NodePokemon sig;
     private NodePokemon ant;
+    private int count;
 
     public NodePokemon(int correlativo, String nombre_pk, String tipo_pk, String region, int PS, int Ata, int Def, int Vel, int AtEsp, int DefEsp,String rareza, String direccionimg) {
         this.correlativo = correlativo;
@@ -144,6 +144,14 @@ public class NodePokemon {
 
     public void setRareza(String rareza) {
         this.rareza = rareza;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
 

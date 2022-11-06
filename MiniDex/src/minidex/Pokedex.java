@@ -4,6 +4,7 @@ import Pokemon.ListaPokemon;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -89,15 +90,13 @@ public class Pokedex extends javax.swing.JFrame {
             PanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelImagenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MostrarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(MostrarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelImagenLayout.setVerticalGroup(
             PanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelImagenLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(MostrarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(184, 184, 184))
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(MostrarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         NombrePK.setFont(new java.awt.Font("Century Gothic", 3, 24)); // NOI18N
@@ -122,6 +121,11 @@ public class Pokedex extends javax.swing.JFrame {
 
         BuscarPK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
         BuscarPK.setText("Buscar Pokemon");
+        BuscarPK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarPKActionPerformed(evt);
+            }
+        });
 
         CargaMasiva.setText("Cargar Pokemons");
         CargaMasiva.addActionListener(new java.awt.event.ActionListener() {
@@ -212,9 +216,10 @@ public class Pokedex extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addGap(54, 54, 54)))
                     .addGroup(PanelEstadisticasLayout.createSequentialGroup()
-                        .addComponent(JLabel5)
-                        .addGap(54, 54, 54))
-                    .addComponent(jLabel8))
+                        .addGroup(PanelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JLabel5)
+                            .addComponent(jLabel8))
+                        .addGap(44, 44, 44)))
                 .addGroup(PanelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtAtaque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,7 +270,7 @@ public class Pokedex extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(PanelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,7 +282,7 @@ public class Pokedex extends javax.swing.JFrame {
                                 .addComponent(BuscarPK, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(SerchPK, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 69, Short.MAX_VALUE))
+                        .addGap(0, 231, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,9 +317,7 @@ public class Pokedex extends javax.swing.JFrame {
                                 .addComponent(PanelEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CargaMasiva, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(PanelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(PanelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -347,34 +350,58 @@ public class Pokedex extends javax.swing.JFrame {
                 while((path=leer.readLine())!=null){
                     count++;
                     text = path.split(":");
-                    for (int i = 0; i <=count; i++) {
-                        correlativo = Integer.parseInt(text[0]);
-                        Salud = Integer.parseInt(text[4]);
-                        Ataque = Integer.parseInt(text[5]);
-                        Defensa = Integer.parseInt(text[6]);
-                        Velocidad = Integer.parseInt(text[7]);
-                        AtaEsp = Integer.parseInt(text[8]);
-                        DefEsp = Integer.parseInt(text[9]);
-                    }
+                    correlativo = Integer.parseInt(text[0]);
+                    Salud = Integer.parseInt(text[4]);
+                    Ataque = Integer.parseInt(text[5]);
+                    Defensa = Integer.parseInt(text[6]);
+                    Velocidad = Integer.parseInt(text[7]);
+                    AtaEsp = Integer.parseInt(text[8]);
+                    DefEsp = Integer.parseInt(text[9]);
                     pokemon.insert_pochemon(correlativo, text[1], text[2], text[3], Salud, Ataque, Defensa, Velocidad, AtaEsp, DefEsp,text[10],text[11]+":"+text[12]);
-                    NombrePK.setText(text[0]+" "+text[1]);
-                    RyT.setText("Tipo: "+text[2]+" ,Region: "+text[3]+" ,Rareza: "+text[10]);
-                    txtSalud.setText(text[4]);
-                    txtAtaque.setText(text[5]);
-                    txtDefensa.setText(text[6]);
-                    txtVelocidad.setText(text[7]);
-                    txtAtEspecial.setText(text[8]);
-                    txtDefEspecial.setText(text[9]);
-                    MostrarImagen.setIcon(new ImageIcon(text[11]+":"+text[12]));
-                    CargaPokemon.setText(text[0]+" "+text[1]+" "+text[2]+"\n");
                 }
+                CargaPokemon.setText(pokemon.mostrar());
+                //System.out.println(pokemon.legendario.graphLegendary());
                 leer.close();
-                pokemon.mostrar();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_CargaMasivaActionPerformed
+
+    private void BuscarPKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPKActionPerformed
+        //int pk = Integer.parseInt(SerchPK.getText());
+        if (SerchPK.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor ingresa un dato correcto");
+        }else{
+            if (pokemon.legendario.SerchLegendary(SerchPK.getText())) {
+                CargaPokemon.setText("");
+                CargaPokemon.setText(pokemon.legendario.regresarPKL(SerchPK.getText()));
+            }
+           /*try{
+                if (pokemon.busqueda(pk)){
+                    NombrePK.setText(pokemon.regresarPK(pk).getCorrelativo()+" "+pokemon.regresarPK(pk).getNombre_pk());
+                    RyT.setText("Tipo: "+pokemon.regresarPK(pk).getTipo_pk()+"-- Region: "+pokemon.regresarPK(pk).getRegion()+"-- Rareza: "+pokemon.regresarPK(pk).getRareza());
+                    String salud = String.valueOf(pokemon.regresarPK(pk).getPS());
+                    txtSalud.setText(salud);
+                    String ataque = String.valueOf(pokemon.regresarPK(pk).getAta());
+                    txtAtaque.setText(ataque);
+                    String defensa = String.valueOf(pokemon.regresarPK(pk).getDef());
+                    txtDefensa.setText(defensa);
+                    String velocidad = String.valueOf(pokemon.regresarPK(pk).getVel());
+                    txtVelocidad.setText(velocidad);
+                    String ae = String.valueOf(pokemon.regresarPK(pk).getAtEsp());
+                    txtAtEspecial.setText(ae);
+                    String de = String.valueOf(pokemon.regresarPK(pk).getDefEsp());
+                    txtDefEspecial.setText(de);
+                    MostrarImagen.setIcon(new ImageIcon(new URL(pokemon.regresarPK(pk).getDireccion_imagen())));
+                }else if (pokemon.legendario.SerchLegendary(SerchPK.getText())){
+                    System.out.println("Legendario");
+                }
+            }catch(Exception e){
+                JOptionPane.showConfirmDialog(null, e);
+            }*/
+        }
+    }//GEN-LAST:event_BuscarPKActionPerformed
 
 
     public static void main(String args[]) {
