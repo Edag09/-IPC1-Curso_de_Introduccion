@@ -368,16 +368,21 @@ public class Pokedex extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CargaMasivaActionPerformed
 
+public boolean isNumeric(String cadena){
+    try {
+        Integer.parseInt(cadena);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
+
     private void BuscarPKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPKActionPerformed
-        //int pk = Integer.parseInt(SerchPK.getText());
         if (SerchPK.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor ingresa un dato correcto");
-        }else{
-            if (pokemon.legendario.SerchLegendary(SerchPK.getText())) {
-                CargaPokemon.setText("");
-                CargaPokemon.setText(pokemon.legendario.regresarPKL(SerchPK.getText()));
-            }
-           /*try{
+        }else if(isNumeric(SerchPK.getText())){
+           int pk = Integer.parseInt(SerchPK.getText());
+           try{
                 if (pokemon.busqueda(pk)){
                     NombrePK.setText(pokemon.regresarPK(pk).getCorrelativo()+" "+pokemon.regresarPK(pk).getNombre_pk());
                     RyT.setText("Tipo: "+pokemon.regresarPK(pk).getTipo_pk()+"-- Region: "+pokemon.regresarPK(pk).getRegion()+"-- Rareza: "+pokemon.regresarPK(pk).getRareza());
@@ -394,12 +399,18 @@ public class Pokedex extends javax.swing.JFrame {
                     String de = String.valueOf(pokemon.regresarPK(pk).getDefEsp());
                     txtDefEspecial.setText(de);
                     MostrarImagen.setIcon(new ImageIcon(new URL(pokemon.regresarPK(pk).getDireccion_imagen())));
-                }else if (pokemon.legendario.SerchLegendary(SerchPK.getText())){
-                    System.out.println("Legendario");
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado este pokemon");
                 }
             }catch(Exception e){
-                JOptionPane.showConfirmDialog(null, e);
-            }*/
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error al intentar encontrar este pokemon");
+            }
+        } else{
+            if (pokemon.legendario.SerchLegendary(SerchPK.getText())) {
+                CargaPokemon.setText(pokemon.legendario.regresarPKL(SerchPK.getText()));
+                pokemon.legendario.TableLegendary();
+                pokemon.legendario.graphLegendary();
+            }
         }
     }//GEN-LAST:event_BuscarPKActionPerformed
 
