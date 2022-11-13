@@ -3,76 +3,46 @@ package Pokemon;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
 
-public class ListLegendary {
-    private NodeLegendary root;
-    private int tamanio;
+public class ListMega {
+    private NodeMega root;
 
-   public ListLegendary(){
+    public ListMega() {
         this.root = null;
-        this.tamanio = 0;
     }
 
-    public void insert_Legendary(int correlativo, String nombre, String tipo, String region, int ps, int ata, int def, int vel, int atesp, int defesp,String rareza, String direccion_IMG){
-        NodeLegendary pochemon_Legendary = new NodeLegendary(correlativo, nombre, tipo, region, ps, ata, def, vel, atesp, defesp, rareza, direccion_IMG);
+    public void Insert_MegaEvolution(int correlativo, String nombre, String tipo, String region, int ps, int ata, int def, int vel, int atesp, int defesp,String rareza, String direccion_IMG){
+        NodeMega Megaevolucion = new NodeMega(correlativo, nombre, tipo, region, ps, ata, def, vel, atesp, defesp, rareza, direccion_IMG);
         if (this.getRoot() == null){
-            this.setRoot(pochemon_Legendary);
-            pochemon_Legendary.setCount(tamanio);
-            this.tamanio++;
+            this.setRoot(Megaevolucion);
         }else{
-            NodeLegendary aux = this.getRoot();
+            NodeMega aux = this.getRoot();
             while (aux.getSig() != null) {                
                 aux = aux.getSig();
             }
-            aux.setSig(pochemon_Legendary);
-            pochemon_Legendary.setCount(tamanio);
-            this.tamanio++;
+            aux.setSig(Megaevolucion);
         } 
     }
 
-    public String mostrar(){
-        NodeLegendary aux = this.getRoot();
+    public boolean SerchMega(String rareza){
+        NodeMega aux = this.getRoot();
+        if (aux != null) {
+            return true;
+        }
+        return false;
+    }
+    
+     public String regresarMega(String rareza){
+        NodeMega aux = this.getRoot();
         String cadena = "";
         while (aux != null) {
-            cadena += "N° Pokedex: "+aux.getCorrelativo()+" Nombre: "+aux.getNombre_pk()+"\n";
+            cadena += "N° Pokedex: "+aux.getCorrelativo()+" Nombre: "+aux.getNombre_pk()+" Region: "+aux.getRegion()+"\n";
             aux = aux.getSig();
-             
         }
-         System.out.println(this.getTamanio());
         return cadena;
     }
 
-    public void graphLegendary(){
-        String cadena = "digraph G{\n";
-        NodeLegendary aux = this.getRoot();
-        int cont = 1;
-        if (aux != null) {
-            while(aux.getSig() != null){
-                cadena = cadena + cont + "[label=\""+aux.getNombre_pk()+"\"]\n"+cont+"->"+(cont+1)+"\n";
-                aux = aux.getSig();
-                cont ++;
-            }
-            cadena = cadena + cont + "[label=\""+aux.getNombre_pk()+"\"]\n";
-        }
-        cadena = cadena+"}";
-        try {
-            FileWriter doc = new FileWriter("C:\\Users\\EduardoA\\OneDrive\\Documentos\\Curso\\MiniDex\\src\\Reportes\\Legendary.dot");
-            doc.write(cadena);
-            doc.close();
-
-            String fileInputPath = "C:\\Users\\EduardoA\\OneDrive\\Documentos\\Curso\\MiniDex\\src\\Reportes\\Legendary.dot";
-            String fileOutputPath = "C:\\Users\\EduardoA\\OneDrive\\Documentos\\Curso\\MiniDex\\src\\Reportes\\Legendary.pdf";
-
-            ProcessBuilder proceso = new ProcessBuilder("dot", "-Tpdf", "-o", fileOutputPath, fileInputPath);
-            proceso.redirectErrorStream(true);
-            proceso.start();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo escribir el archivo");
-        }
-        
-    }
-
-    public void TableLegendary(){
-        NodeLegendary aux = this.getRoot();
+    public void TableMega(){
+        NodeMega aux = this.getRoot();
         String pagina = "<!DOCTYPE html>\n" +
                         "<html lang=\"en\">\n" +
                         "<head>\n" +
@@ -80,7 +50,7 @@ public class ListLegendary {
                         "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
                         "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"+ 
                         "    <link rel=\"icon\" type=\"image/x-icon\" href=\"pikachu.png\">"+
-                        "    <title>Pokedex Legendarios</title>\n" +
+                        "    <title>Mega Evoluciones</title>\n" +
                         "</head>\n" +
                         "<body>\n"+
                             "<table align=\"center\" cellspacing=\"8\" border=\"5%\">\n" +
@@ -118,7 +88,7 @@ public class ListLegendary {
                         "</body>\n" +
                         "</html>";
         try {
-            FileWriter page = new FileWriter("C:\\Users\\EduardoA\\OneDrive\\Documentos\\Curso\\MiniDex\\src\\Reportes\\Legendarios.html");
+            FileWriter page = new FileWriter("C:\\Users\\EduardoA\\OneDrive\\Documentos\\Curso\\MiniDex\\src\\Reportes\\Megas.html");
             page.write(pagina);
             page.close();
         } catch (Exception e) {
@@ -126,39 +96,12 @@ public class ListLegendary {
         }
     }
 
-    public String regresarPKL(String rareza){
-        NodeLegendary aux = this.getRoot();
-        String cadena = "";
-        while (aux != null) {
-            cadena += "N° Pokedex: "+aux.getCorrelativo()+" Nombre: "+aux.getNombre_pk()+" Region: "+aux.getRegion()+"\n";
-            aux = aux.getSig();
-        }
-        return cadena;
-    }
-
-    public boolean SerchLegendary(String rareza){
-        NodeLegendary aux = this.getRoot();
-        if (aux != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public NodeLegendary getRoot() {
+    public NodeMega getRoot() {
         return root;
     }
 
-    public void setRoot(NodeLegendary root) {
+    public void setRoot(NodeMega root) {
         this.root = root;
     }
-
-    public int getTamanio() {
-        return tamanio;
-    }
-
-    public void setTamanio(int tamanio) {
-        this.tamanio = tamanio;
-    }
-
 
 }

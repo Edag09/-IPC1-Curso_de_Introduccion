@@ -367,7 +367,7 @@ public class Pokedex extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_CargaMasivaActionPerformed
-
+//Metodo/Funcion que nos ayuda a ver si la entrada de texto es entero o string
 public boolean isNumeric(String cadena){
     try {
         Integer.parseInt(cadena);
@@ -406,10 +406,17 @@ public boolean isNumeric(String cadena){
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al intentar encontrar este pokemon");
             }
         } else{
-            if (pokemon.legendario.SerchLegendary(SerchPK.getText())) {
-                CargaPokemon.setText(pokemon.legendario.regresarPKL(SerchPK.getText()));
-                pokemon.legendario.TableLegendary();
-                pokemon.legendario.graphLegendary();
+            if (SerchPK.getText().equals("Legendario")) {
+                if (pokemon.legendario.SerchLegendary(SerchPK.getText())) {
+                    CargaPokemon.setText(pokemon.legendario.regresarPKL(SerchPK.getText()));
+                    pokemon.legendario.TableLegendary();
+                    pokemon.legendario.graphLegendary();
+                }
+            }else if(SerchPK.getText().equals("Mega-Evolucion")){
+                if (pokemon.Mega.SerchMega(SerchPK.getText())) {
+                    CargaPokemon.setText(pokemon.Mega.regresarMega(SerchPK.getText()));
+                    pokemon.Mega.TableMega();
+                }
             }
         }
     }//GEN-LAST:event_BuscarPKActionPerformed

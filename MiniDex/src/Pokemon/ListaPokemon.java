@@ -5,10 +5,12 @@ import javax.swing.JOptionPane;
 public class ListaPokemon {
     private NodePokemon root;
     public ListLegendary legendario;
+    public ListMega Mega;
 
     public ListaPokemon() {
         root = null;
         this.legendario = new ListLegendary();
+        this.Mega = new ListMega();
     }
 
     public void insert_pochemon(int correlativo, String nombre, String tipo, String region, int ps, int ata, int def, int vel, int atesp, int defesp,String rareza, String direccion_IMG){
@@ -68,6 +70,8 @@ public class ListaPokemon {
     public void inserLegendari(NodePokemon pochemon, String rareza){
         if (rareza.equals("Legendario")) {
             this.legendario.insert_Legendary(pochemon.getCorrelativo(), pochemon.getNombre_pk(), pochemon.getTipo_pk(), pochemon.getRegion(), pochemon.getPS(), pochemon.getAta(), pochemon.getDef(), pochemon.getVel(), pochemon.getAtEsp(), pochemon.getDefEsp(), pochemon.getRareza(), pochemon.getDireccion_imagen());
+        }else if (rareza.equals("Mega-Evolucion")) {
+            this.Mega.Insert_MegaEvolution(pochemon.getCorrelativo(), pochemon.getNombre_pk(), pochemon.getTipo_pk(), pochemon.getRegion(), pochemon.getPS(), pochemon.getAta(), pochemon.getDef(), pochemon.getVel(), pochemon.getAtEsp(), pochemon.getDefEsp(), pochemon.getRareza(), pochemon.getDireccion_imagen());
         }
     }
 
